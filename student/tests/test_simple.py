@@ -1,7 +1,7 @@
 
 import datetime
 from decimal import Decimal
-from student.student_code import get_measurement_value, get_patient_name, get_patient_gender_as_string
+from student_code import get_measurement_value, get_patient_name, get_patient_gender_as_string
 
 def test_get_measurement_value():
     row = (2, 1, 3013290, datetime.date(2013, 4, 2), datetime.datetime(2013, 4, 2, 9, 30, 10), None, 0, None, Decimal('6.2'), None, 44777602, Decimal('4.8'), Decimal('6.0'), None, None, None, None, 3013290, 'kPa', None, '6.2', None, None)

@@ -1,4 +1,4 @@
-from student.util.OmopOnFhir import t_measurement, t_f_person
+from util.OmopOnFhir import t_measurement, t_f_person
 
 ### Introduction
 '''

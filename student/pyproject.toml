@@ -13,3 +13,6 @@ psycopg2-binary = "2.9.6"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ". src"
