@@ -37,7 +37,7 @@ patient_1.json file, but it will be generated when the resource is requested. Wh
 returned for the US Core Race's coding in this case? (Case Sensitive!)
 '''
 def question_1():
-    answer: str = "" # Set your answer here.
+    answer: str = "UNK" # Set your answer here.
     return answer
 
 '''
@@ -48,15 +48,15 @@ vocabulary. Post all three to the OMOPonFHIR Server. Which of the two OMOP CDM t
 in? (Case Sensitive! Use all lower case.)
 '''
 def question_2_observation_1():
-    answer: str = "" # Set your answer here.
+    answer: str = "measurement" # Set your answer here.
     return answer
 
 def question_2_observation_2():
-    answer: str = "" # Set your answer here.
+    answer: str = "measurement" # Set your answer here.
     return answer
 
 def question_2_observation_3():
-    answer: str = "" # Set your answer here.
+    answer: str = "observation" # Set your answer here.
     return answer
 
 '''
@@ -67,7 +67,7 @@ with what field when requested back from the server? (Answer with the full strin
 exactly as it is given. Case Sensitive!)
 '''
 def question_3():
-    answer: str = "" # Set your answer here.
+    answer: str = "valueString" # Set your answer here.
     return answer
 
 '''
@@ -76,7 +76,7 @@ Moving to the two MedicationStatement resources, post both to the FHIR Server if
 OMOP CDM table are they populated into? (Case Sensitive! Use all lowercase.)
 '''
 def question_4():
-    answer: str = "" # Set your answer here.
+    answer: str = "drug_exposure" # Set your answer here.
     return answer
 
 ### Data Model Exercises
