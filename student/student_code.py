@@ -102,18 +102,28 @@ None
 '''
 def get_measurement_value(t_measurement_row):
     col_length = len(t_measurement.c)
-    print(col_length)
-    print(t_measurement.c[8])
+#     print(col_length)
+#     print(t_measurement.c[8])
     vau_index = None
-    for i, col in range(col_length):
-        print(i, col)
-        if col == "measurement.value_as_number":
+
+    for i in range(col_length):
+#         print(i, col)
+        if str(t_measurement.c[i]) == "measurement.value_as_number":
             vau_index = i
-             break
+            break
+
     target_value = t_measurement_row[vau_index]
-    return float(target_value) if target_value.isnumeric() else None
 
-
+#     return float(target_value) if target_value.isnumeric() else None
+    try:
+        f = float(target_value)
+    except (TypeError, ValueError):
+#         try:
+#             f = float(str(target_value))
+#         except (TypeError, ValueError):
+                return None
+#
+    return f if f else None
 
 '''
 # Exercise 2 - Get Patient Full Name
