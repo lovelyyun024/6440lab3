@@ -101,7 +101,19 @@ A number as a float or None if no value exists.
 None
 '''
 def get_measurement_value(t_measurement_row):
-    pass
+    col_length = len(t_measurement.c)
+    print(col_length)
+    print(t_measurement.c[8])
+    vau_index = None
+    for i, col in range(col_length):
+        print(i, col)
+        if col == "measurement.value_as_number":
+            vau_index = i
+             break
+    target_value = t_measurement_row[vau_index]
+    return float(target_value) if target_value.isnumeric() else None
+
+
 
 '''
 # Exercise 2 - Get Patient Full Name
