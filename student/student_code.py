@@ -179,19 +179,59 @@ Example:
 "MALE"
 '''
 def get_patient_gender_as_string(joined_row, keys):
-# get the specified value by helper function
+    mappings = {
+        'male_variants': { "m", "male", "man", "masc", "masculine", "cis male", "cis man",
+                                      "trans male", "trans man", "ftm", "f to m", "f2m", "boy"},
+        'female_variants': { "f", "female", "woman", "fem", "feminine", "cis female", "cis woman",
+                                        "trans female", "trans woman", "mtf", "m to f", "m2f", "girl"},
+        'other_variants': { "other", "o", "non binary", "nonbinary", "nb", "enby",
+                                       "genderqueer", "gender fluid", "genderfluid", "bigender",
+                                       "agender", "pangender", "two spirit", "two-spirit", "2spirit",
+                                       "intersex", "gender diverse", "gender nonconforming", "gnc"},
+        'unknown_variants': { "u", "unknown", "unk", "null", "none", "n a", "n a.", "na", "n/a",
+                                         "unspecified", "not specified", "undisclosed", "prefer not to say",
+                                         "tbd", "to be determined", ""}
+    }
+
+
+    def conversion(raw_value):
+        cleaned_value = str(raw_value).strip().lower() if raw_value is not None else ""
+        if not cleaned_value:
+            return "UNKNOWN"
+
+        match cleaned_value:
+            case v if v in mappings['male_variants']:
+                return "MALE"
+            case v if v in mappings['female_variants']:
+                return "FEMALE"
+            case v if v in mappings['other_variants']:
+                return "OTHER"
+            case v if v in mappings['unknown_variants']:
+                return "UNKNOWN"
+            case _:
+                return "UNKNOWN"
+
     def get_value(col_name):
-        idx = get_column_index(col_name, keys)
-        if idx:
-            return joined_row[idx]
-        else:
+        try:
+            idx = get_column_index(col_name, keys)
+            if 0 <= idx < len(joined_row):
+                return joined_row[idx]
+        except Exception:
             return
 
-    target_value = get_value("gender")
-    return target_value
+    val = get_value('gender')
+    if val is not None:
+        return conversion(val)
 
+    for key in (
+        "gender",
+        "gender_concept_name", "concept_name", "concept.concept_name", "gender_concept.concept_name"
+    ):
+        v = get_value(key)
+        if v != None:
+            return conversion(v)
 
-
+    return 'UNKNOWN'
 
 
 # Helper function for getting the index of a given column dynamically.
