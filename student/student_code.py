@@ -179,7 +179,20 @@ Example:
 "MALE"
 '''
 def get_patient_gender_as_string(joined_row, keys):
-    pass
+# get the specified value by helper function
+    def get_value(col_name):
+        idx = get_column_index(col_name, keys)
+        if idx:
+            return joined_row[idx]
+        else:
+            return
+
+    target_value = get_value("gender")
+    return target_value
+
+
+
+
 
 # Helper function for getting the index of a given column dynamically.
 def get_column_index(column_name: str, keys):
