@@ -139,7 +139,26 @@ Example:
 "John Doe"
 '''
 def get_patient_name(t_f_person_row):
-    pass
+        col_length = len(t_f_person.c)
+
+        given_name_idx = None
+        family_name_idx = None
+
+        for i in range(col_length):
+    #         print(i, col)
+            if str(t_f_person.c[i]) == "family_name":
+                family_name_idx = i
+            elif str(t_f_person.c[i]) == "given1_name":
+                given_name_idx = i
+
+            if give_name_idx and family_name_idx:
+                break
+
+
+        given_name = t_f_person_row[given_name_idx]
+        family_name = t_f_person_row[family_name_idx]
+
+        return given_name + " " + family_name
 
 '''
 # Exercise 3 - Get Patient Gender as String
